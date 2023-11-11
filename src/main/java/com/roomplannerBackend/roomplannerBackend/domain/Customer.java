@@ -1,5 +1,7 @@
 package com.roomplannerBackend.roomplannerBackend.domain;
 
+import java.util.List;
+
 public class Customer {
     private String id;
 
@@ -16,6 +18,8 @@ public class Customer {
     private String password;
 
     private Boolean state;
+
+    private List<Booking> bookings;
 
     public String getId() {
         return id;
@@ -79,5 +83,13 @@ public class Customer {
 
     public void setState(Boolean state) {
         this.state = state;
+    }
+
+    public List<Booking> getBookings() {
+        return bookings;
+    }
+
+    public void setBookings(List<Booking> bookings) {
+        this.bookings = bookings;
     }
 }

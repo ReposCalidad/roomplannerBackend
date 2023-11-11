@@ -1,5 +1,6 @@
 package com.roomplannerBackend.roomplannerBackend.persistence;
 
+import com.roomplannerBackend.roomplannerBackend.domain.Booking;
 import com.roomplannerBackend.roomplannerBackend.domain.Customer;
 import com.roomplannerBackend.roomplannerBackend.domain.repository.CustomerRepository;
 import com.roomplannerBackend.roomplannerBackend.persistence.crud.ClienteCrudRepository;
@@ -8,6 +9,7 @@ import com.roomplannerBackend.roomplannerBackend.persistence.mapper.CustomerMapp
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
+import java.util.List;
 import java.util.Optional;
 
 @Repository
@@ -19,17 +21,17 @@ public class ClienteRepository implements CustomerRepository {
 
 
     @Override
-    public Optional<Customer> getActivo(String customerId,boolean state){
-        return clienteCrudRepository.findByIdAndEstado(customerId, state).map(cliente -> mapper.toCustomer(cliente));
+    public List<Customer> getAll() {
+        List<Cliente> customers =(List<Cliente>) clienteCrudRepository.findAll();
+        return mapper.toCustomers(customers);
     }
+
+
 
     @Override
     public Optional<Customer> getCustomerCredentials(String customerId) {
         return clienteCrudRepository.findById(customerId).map(cliente -> {
             Customer customer = mapper.toCustomer(cliente);
-
-            customer.setMail(cliente.getCorreo());
-            customer.setPassword(cliente.getContraseña());
             return customer;
         });
     }
@@ -40,17 +42,11 @@ public class ClienteRepository implements CustomerRepository {
         return mapper.toCustomer(clienteCrudRepository.save(cliente));
     }
 
+
     @Override
-    public int updateEstado(String customerId, boolean estado) {
-        Optional<Cliente> clienteOpt = clienteCrudRepository.findById(customerId);
-        if (clienteOpt.isPresent()) {
-            Cliente cliente = clienteOpt.get();
-            cliente.setEstado(estado);
-            clienteCrudRepository.save(cliente);
-            return 1; // Devuelve 1 para indicar que la operación fue exitosa
-        } else {
-            return 0; // Devuelve 0 para indicar que no se encontró el Cliente
-        }
+    public Optional<Customer> findByEmailAndpassword(String email, String password) {
+        return clienteCrudRepository.findByCorreoAndContraseña(email, password)
+                .map(mapper::toCustomer);
     }
 
 }

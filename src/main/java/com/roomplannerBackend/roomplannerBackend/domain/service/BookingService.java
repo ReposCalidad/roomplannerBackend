@@ -2,11 +2,8 @@ package com.roomplannerBackend.roomplannerBackend.domain.service;
 
 import com.roomplannerBackend.roomplannerBackend.domain.Booking;
 import com.roomplannerBackend.roomplannerBackend.domain.repository.BookingRepository;
-import com.roomplannerBackend.roomplannerBackend.persistence.crud.ReservaCrudRepository;
 import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.data.repository.reactive.ReactiveCrudRepository;
 import org.springframework.stereotype.Service;
-import org.springframework.web.bind.annotation.GetMapping;
 
 import java.util.List;
 import java.util.Optional;
@@ -25,9 +22,9 @@ public class BookingService {
         return bookingRepository.getByCustomer(customerId);
     }
 
-    public Booking save(Booking booking)
+    public Booking save(Booking booking, String customerId)
     {
-        return bookingRepository.save(booking);
+        return bookingRepository.save(booking, customerId);
     }
 
     public Optional<Booking> getBooking(int bookingId)

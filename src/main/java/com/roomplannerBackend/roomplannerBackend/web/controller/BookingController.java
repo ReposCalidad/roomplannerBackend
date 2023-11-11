@@ -26,9 +26,9 @@ public class BookingController {
     }
 
     @PostMapping("/save")
-    public Booking save(@RequestBody Booking booking)
+    public Booking save(@RequestBody Booking booking, String customerId)
     {
-        return bookingService.save(booking);
+        return bookingService.save(booking, customerId);
     }
 
     @GetMapping("/bookingid/{bookingId}")

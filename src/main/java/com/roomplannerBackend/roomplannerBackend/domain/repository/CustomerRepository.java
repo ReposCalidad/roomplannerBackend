@@ -1,15 +1,18 @@
 package com.roomplannerBackend.roomplannerBackend.domain.repository;
 
+import com.roomplannerBackend.roomplannerBackend.domain.Booking;
 import com.roomplannerBackend.roomplannerBackend.domain.Customer;
 
+import java.util.List;
 import java.util.Optional;
 
 public interface CustomerRepository {
-    Optional<Customer> getActivo(String customerId,boolean state);
+
+    List<Customer> getAll();
 
     Optional<Customer> getCustomerCredentials(String customerId);
 
     Customer save(Customer customer);
 
-    int updateEstado(String customerId, boolean estado);
+    Optional<Customer> findByEmailAndpassword(String email, String password);
 }

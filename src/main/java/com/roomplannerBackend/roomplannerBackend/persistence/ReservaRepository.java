@@ -33,7 +33,7 @@ public class ReservaRepository implements BookingRepository {
     }
 
     @Override
-    public Booking save(Booking booking) {
+    public Booking save(Booking booking, String customerId) {
         Reserva reserva = bookingMapper.toReserva(booking);
         return bookingMapper.toBooking(reservaCrudRepository.save(reserva));
     }

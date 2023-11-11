@@ -14,8 +14,6 @@ public class Booking {
 
     private Double price;
 
-    private Customer customer;
-
     public int getBookingId() {
         return bookingId;
     }
@@ -56,11 +54,4 @@ public class Booking {
         this.price = price;
     }
 
-    public Customer getCustomer() {
-        return customer;
-    }
-
-    public void setCustomer(Customer customer) {
-        this.customer = customer;
-    }
 }

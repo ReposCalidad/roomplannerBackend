@@ -17,7 +17,6 @@ public interface BookingMapper {
             @Mapping(source = "fecha1",target = "date1"),
             @Mapping(source = "fecha2",target = "date2"),
             @Mapping(source = "precio",target = "price"),
-            @Mapping(source = "cliente", target = "customer")
     })
     Booking toBooking(Reserva reserva);
     List<Booking> toBooking(List<Reserva> reservas);
