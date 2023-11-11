@@ -27,7 +27,7 @@ public class Cliente {
 
     private Boolean estado;
 
-    @OneToMany(mappedBy = "cliente")
+    @OneToMany(mappedBy = "cliente",fetch = FetchType.EAGER)
     private List<Reserva> reservas;
 
     public String getId() {

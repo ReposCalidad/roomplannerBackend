@@ -9,6 +9,7 @@ import java.util.List;
 import java.util.Optional;
 
 @RestController
+@CrossOrigin(value = "http://localhost:3000")
 @RequestMapping("/customer")
 public class CustomerController {
     @Autowired
@@ -20,7 +21,7 @@ public class CustomerController {
         return customerService.getAll();
     }
 
-    @GetMapping("/getcredentials/{id}")
+    @GetMapping("/{id}")
     public Optional<Customer> getCustomerCredentials(@PathVariable("id") String customerId)
     {
         return customerService.getCustomerCredentials(customerId);

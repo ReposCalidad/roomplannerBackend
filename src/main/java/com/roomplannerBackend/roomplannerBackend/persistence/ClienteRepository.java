@@ -4,8 +4,11 @@ import com.roomplannerBackend.roomplannerBackend.domain.Booking;
 import com.roomplannerBackend.roomplannerBackend.domain.Customer;
 import com.roomplannerBackend.roomplannerBackend.domain.repository.CustomerRepository;
 import com.roomplannerBackend.roomplannerBackend.persistence.crud.ClienteCrudRepository;
+import com.roomplannerBackend.roomplannerBackend.persistence.crud.ReservaCrudRepository;
 import com.roomplannerBackend.roomplannerBackend.persistence.entity.Cliente;
+import com.roomplannerBackend.roomplannerBackend.persistence.entity.Reserva;
 import com.roomplannerBackend.roomplannerBackend.persistence.mapper.CustomerMapper;
+import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -17,12 +20,18 @@ public class ClienteRepository implements CustomerRepository {
     @Autowired
     private ClienteCrudRepository clienteCrudRepository;
     @Autowired
+    private ReservaCrudRepository reservaCrudRepository;
+    @Autowired
     private CustomerMapper mapper;
 
 
     @Override
     public List<Customer> getAll() {
         List<Cliente> customers =(List<Cliente>) clienteCrudRepository.findAll();
+        customers.forEach(cliente -> {
+            List<Reserva> reservas = reservaCrudRepository.findByIdCliente(cliente.getId()).orElse(null);
+            cliente.setReservas(reservas);
+        });
         return mapper.toCustomers(customers);
     }
 
