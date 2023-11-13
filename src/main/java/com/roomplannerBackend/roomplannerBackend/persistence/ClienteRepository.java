@@ -44,13 +44,6 @@ public class ClienteRepository implements CustomerRepository {
     }
 
     @Override
-    public Customer save(Customer customer) {
-        Cliente cliente = mapper.toCliente(customer);
-        return mapper.toCustomer(clienteCrudRepository.save(cliente));
-    }
-
-
-    @Override
     public Optional<Customer> findByEmailAndpassword(String email, String password) {
         Optional<Cliente> clienteOptional = clienteCrudRepository.findByCorreoAndContraseña(email, password);
         return Optional.ofNullable(clienteOptional.map(mapper::toCustomer).orElse(null));
@@ -67,6 +60,13 @@ public class ClienteRepository implements CustomerRepository {
     @Override
     public Boolean admin(String id) {
         return clienteCrudRepository.findById(id).get().getAdministrador();
+    }
+
+    @Override
+    public Customer save(Customer customer) {
+        Cliente cliente = mapper.toCliente(customer);
+        Cliente savedCliente = clienteCrudRepository.save(cliente);
+        return mapper.toCustomer(savedCliente);
     }
 
 }

@@ -34,11 +34,6 @@ public class CustomerService {
         });
     }
 
-    public Customer save(Customer customer)
-    {
-        return customerRepository.save(customer);
-    }
-
     public Optional<Customer> checkCustomerCredentials(String email, String password)
     {
         return customerRepository.findByEmailAndpassword(email, password);
@@ -47,5 +42,10 @@ public class CustomerService {
     public boolean admin(String customerId)
     {
         return customerRepository.admin(customerId);
+    }
+
+    public Customer save(Customer customer)
+    {
+        return customerRepository.save(customer);
     }
 }

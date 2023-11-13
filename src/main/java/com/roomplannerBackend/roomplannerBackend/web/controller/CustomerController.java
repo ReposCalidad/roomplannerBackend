@@ -47,10 +47,12 @@ public class CustomerController {
     {
         return customerService.admin(customerId);
     }
+
     @PostMapping("/save")
-    public Customer save(Customer customer)
+    public ResponseEntity<Customer> save(@RequestBody Customer customer)
     {
-        return customerService.save(customer);
+        Customer savedCustomer = customerService.save(customer);
+        return new ResponseEntity<>(savedCustomer,HttpStatus.CREATED);
     }
 
     @PutMapping("/updateState/{id}/{estado}")

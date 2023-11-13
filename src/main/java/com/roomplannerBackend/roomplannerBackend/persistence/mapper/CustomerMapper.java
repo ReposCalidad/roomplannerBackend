@@ -1,6 +1,5 @@
 package com.roomplannerBackend.roomplannerBackend.persistence.mapper;
 
-import com.roomplannerBackend.roomplannerBackend.domain.Booking;
 import com.roomplannerBackend.roomplannerBackend.domain.Customer;
 import com.roomplannerBackend.roomplannerBackend.persistence.entity.Cliente;
 import org.mapstruct.InheritInverseConfiguration;
@@ -14,12 +13,12 @@ import java.util.List;
 public interface CustomerMapper {
 
     @Mappings({
-            @Mapping(source = "id",target = "id"),
             @Mapping(source = "tipoId",target = "idType"),
             @Mapping(source = "nombres",target = "names"),
             @Mapping(source = "apellidos",target = "surnames"),
             @Mapping(source = "telefono",target = "phone"),
             @Mapping(source = "correo", target = "mail"),
+            @Mapping(source = "contraseña", target = "password"),
             @Mapping(source = "estado",target = "state"),
             @Mapping(source = "administrador", target = "admin"),
             @Mapping(source = "reservas", target = "bookings"),

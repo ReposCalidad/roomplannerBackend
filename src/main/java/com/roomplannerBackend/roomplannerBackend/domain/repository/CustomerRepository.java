@@ -12,11 +12,13 @@ public interface CustomerRepository {
 
     Optional<Customer> getCustomerCredentials(String customerId);
 
-    Customer save(Customer customer);
 
     Optional<Customer> findByEmailAndpassword(String email, String password);
 
     Optional<Customer> updateEstadoById(String id, boolean estado);
 
-   Boolean admin(String id);
+    Boolean admin(String id);
+
+    Customer save(Customer customer);
+
 }
