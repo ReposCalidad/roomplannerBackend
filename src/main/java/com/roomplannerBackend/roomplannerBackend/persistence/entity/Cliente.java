@@ -27,6 +27,9 @@ public class Cliente {
 
     private Boolean estado;
 
+    @Column(name = "admin")
+    private Boolean administrador;
+
     @OneToMany(mappedBy = "cliente",fetch = FetchType.EAGER)
     private List<Reserva> reservas;
 
@@ -96,6 +99,14 @@ public class Cliente {
 
     public List<Reserva> getReservas() {
         return reservas;
+    }
+
+    public Boolean getAdministrador() {
+        return administrador;
+    }
+
+    public void setAdministrador(Boolean administrador) {
+        this.administrador = administrador;
     }
 
     public void setReservas(List<Reserva> reservas) {

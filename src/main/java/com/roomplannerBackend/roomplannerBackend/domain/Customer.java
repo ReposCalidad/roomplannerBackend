@@ -19,6 +19,8 @@ public class Customer {
 
     private Boolean state;
 
+    private Boolean admin;
+
     private List<Booking> bookings;
 
     public String getId() {
@@ -83,6 +85,14 @@ public class Customer {
 
     public void setState(Boolean state) {
         this.state = state;
+    }
+
+    public Boolean getAdmin() {
+        return admin;
+    }
+
+    public void setAdmin(Boolean admin) {
+        this.admin = admin;
     }
 
     public List<Booking> getBookings() {

@@ -1,7 +1,9 @@
 package com.roomplannerBackend.roomplannerBackend.domain.service;
 
 import com.roomplannerBackend.roomplannerBackend.domain.Booking;
+import com.roomplannerBackend.roomplannerBackend.domain.Customer;
 import com.roomplannerBackend.roomplannerBackend.domain.repository.BookingRepository;
+import com.roomplannerBackend.roomplannerBackend.domain.repository.CustomerRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 

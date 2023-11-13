@@ -11,8 +11,13 @@ import java.util.Optional;
 
 @Service
 public class CustomerService {
+    private final CustomerRepository customerRepository;
+
     @Autowired
-    private CustomerRepository customerRepository;
+    public CustomerService(CustomerRepository customerRepository) {
+        this.customerRepository = customerRepository;
+    }
+
     @Autowired
     private BookingRepository bookingRepository;
 
@@ -39,4 +44,8 @@ public class CustomerService {
         return customerRepository.findByEmailAndpassword(email, password).isPresent();
     }
 
+    public boolean admin(String customerId)
+    {
+        return customerRepository.admin(customerId);
+    }
 }

@@ -1,6 +1,5 @@
 package com.roomplannerBackend.roomplannerBackend.persistence;
 
-import com.roomplannerBackend.roomplannerBackend.domain.Booking;
 import com.roomplannerBackend.roomplannerBackend.domain.Customer;
 import com.roomplannerBackend.roomplannerBackend.domain.repository.CustomerRepository;
 import com.roomplannerBackend.roomplannerBackend.persistence.crud.ClienteCrudRepository;
@@ -8,7 +7,6 @@ import com.roomplannerBackend.roomplannerBackend.persistence.crud.ReservaCrudRep
 import com.roomplannerBackend.roomplannerBackend.persistence.entity.Cliente;
 import com.roomplannerBackend.roomplannerBackend.persistence.entity.Reserva;
 import com.roomplannerBackend.roomplannerBackend.persistence.mapper.CustomerMapper;
-import org.hibernate.Hibernate;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Repository;
 
@@ -56,6 +54,19 @@ public class ClienteRepository implements CustomerRepository {
     public Optional<Customer> findByEmailAndpassword(String email, String password) {
         return clienteCrudRepository.findByCorreoAndContraseña(email, password)
                 .map(mapper::toCustomer);
+    }
+
+    @Override
+    public Optional<Customer> updateEstadoById(String id, boolean estado) {
+        return clienteCrudRepository.findById(id).map(cliente -> {
+            cliente.setEstado(estado);
+            return mapper.toCustomer(clienteCrudRepository.save(cliente));
+        });
+    }
+
+    @Override
+    public Boolean admin(String id) {
+        return clienteCrudRepository.findById(id).get().getAdministrador();
     }
 
 }

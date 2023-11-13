@@ -19,14 +19,15 @@ public interface CustomerMapper {
             @Mapping(source = "nombres",target = "names"),
             @Mapping(source = "apellidos",target = "surnames"),
             @Mapping(source = "telefono",target = "phone"),
-            @Mapping(source = "correo",target = "mail"),
-            @Mapping(source = "contraseña",target = "password"),
             @Mapping(source = "estado",target = "state"),
+            @Mapping(source = "administrador", target = "admin"),
             @Mapping(source = "reservas", target = "bookings"),
     })
     Customer toCustomer(Cliente cliente);
     List<Customer> toCustomers(List<Cliente> clientes);
 
     @InheritInverseConfiguration
+    @Mapping(target = "correo", ignore = true)
+    @Mapping(target = "contraseña", ignore = true)
     Cliente toCliente(Customer customer);
 }
