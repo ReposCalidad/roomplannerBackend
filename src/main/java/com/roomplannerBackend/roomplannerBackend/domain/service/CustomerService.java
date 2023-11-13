@@ -39,9 +39,9 @@ public class CustomerService {
         return customerRepository.save(customer);
     }
 
-    public boolean checkCustomerCredentials(String email, String password)
+    public Optional<Customer> checkCustomerCredentials(String email, String password)
     {
-        return customerRepository.findByEmailAndpassword(email, password).isPresent();
+        return customerRepository.findByEmailAndpassword(email, password);
     }
 
     public boolean admin(String customerId)

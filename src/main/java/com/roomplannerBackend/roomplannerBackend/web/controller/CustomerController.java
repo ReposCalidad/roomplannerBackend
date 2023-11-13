@@ -37,7 +37,7 @@ public class CustomerController {
     }
 
     @GetMapping("/checkcredentials/{correo}/{contraseña}")
-    public boolean checkCustomerCredentials(@PathVariable("correo") String email,@PathVariable("contraseña") String password)
+    public Optional<Customer> checkCustomerCredentials(@PathVariable("correo") String email, @PathVariable("contraseña") String password)
     {
         return customerService.checkCustomerCredentials(email, password);
     }

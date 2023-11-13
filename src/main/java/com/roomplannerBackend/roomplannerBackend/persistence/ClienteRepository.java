@@ -52,8 +52,8 @@ public class ClienteRepository implements CustomerRepository {
 
     @Override
     public Optional<Customer> findByEmailAndpassword(String email, String password) {
-        return clienteCrudRepository.findByCorreoAndContraseña(email, password)
-                .map(mapper::toCustomer);
+        Optional<Cliente> clienteOptional = clienteCrudRepository.findByCorreoAndContraseña(email, password);
+        return Optional.ofNullable(clienteOptional.map(mapper::toCustomer).orElse(null));
     }
 
     @Override
