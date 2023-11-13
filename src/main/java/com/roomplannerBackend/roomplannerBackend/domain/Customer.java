@@ -102,4 +102,18 @@ public class Customer {
     public void setBookings(List<Booking> bookings) {
         this.bookings = bookings;
     }
+
+    public Customer withoutPassword() {
+        Customer customerWithoutPassword = new Customer();
+        customerWithoutPassword.setId(this.getId());
+        customerWithoutPassword.setIdType(this.getIdType());
+        customerWithoutPassword.setNames(this.getNames());
+        customerWithoutPassword.setSurnames(this.getSurnames());
+        customerWithoutPassword.setPhone(this.getPhone());
+        customerWithoutPassword.setMail(this.getMail());
+        customerWithoutPassword.setState(this.getState());
+        customerWithoutPassword.setAdmin(this.getAdmin());
+        customerWithoutPassword.setBookings(this.getBookings());
+        return customerWithoutPassword;
+    }
 }

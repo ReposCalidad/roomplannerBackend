@@ -36,7 +36,8 @@ public class CustomerService {
 
     public Optional<Customer> checkCustomerCredentials(String email, String password)
     {
-        return customerRepository.findByEmailAndpassword(email, password);
+        Optional<Customer> optionalCustomer = customerRepository.findByEmailAndpassword(email, password);
+        return optionalCustomer.map(Customer::withoutPassword);
     }
 
     public boolean admin(String customerId)
