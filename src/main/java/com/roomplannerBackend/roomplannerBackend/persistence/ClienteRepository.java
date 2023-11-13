@@ -69,4 +69,14 @@ public class ClienteRepository implements CustomerRepository {
         return mapper.toCustomer(savedCliente);
     }
 
+    @Override
+    public boolean existsById(String id) {
+        return clienteCrudRepository.existsById(id);
+    }
+
+    @Override
+    public boolean existsByMail(String mail) {
+        return clienteCrudRepository.existsByCorreo(mail);
+    }
+
 }

@@ -47,6 +47,10 @@ public class CustomerService {
 
     public Customer save(Customer customer)
     {
+        if(customerRepository.existsById(customer.getId())||customerRepository.existsByMail(customer.getMail()))
+        {
+            throw new RuntimeException("ID o correo ya existen. No se puede guardar el cliente.");
+        }
         return customerRepository.save(customer);
     }
 }

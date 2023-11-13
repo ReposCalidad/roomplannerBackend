@@ -15,4 +15,6 @@ public interface ClienteCrudRepository extends CrudRepository<Cliente, String> {
     @Modifying
     @Query("UPDATE Cliente c SET c.estado = :newState WHERE c.id = :customerId")
     Optional<Cliente> updateByEstado(@Param("customerId") String customerId, @Param("newState") boolean newState);
+
+    boolean existsByCorreo(String correo);
 }

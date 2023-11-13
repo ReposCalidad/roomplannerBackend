@@ -21,4 +21,8 @@ public interface CustomerRepository {
 
     Customer save(Customer customer);
 
+    boolean existsById(String id);
+
+    boolean existsByMail(String mail);
+
 }
