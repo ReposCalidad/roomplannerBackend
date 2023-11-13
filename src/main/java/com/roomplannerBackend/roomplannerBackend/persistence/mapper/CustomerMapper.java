@@ -27,6 +27,5 @@ public interface CustomerMapper {
     List<Customer> toCustomers(List<Cliente> clientes);
 
     @InheritInverseConfiguration
-    @Mapping(target = "contraseña", ignore = true)
     Cliente toCliente(Customer customer);
 }
