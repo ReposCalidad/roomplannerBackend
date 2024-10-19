@@ -5,7 +5,7 @@ import com.roomplannerBackend.roomplannerBackend.domain.Customer;
 
 import java.util.List;
 import java.util.Optional;
-//comment
+//commen
 public interface BookingRepository {
     List<Booking> getAll();
     Optional<List<Booking>> getByCustomer(String customerId);
